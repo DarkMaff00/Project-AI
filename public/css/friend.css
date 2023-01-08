@@ -82,8 +82,3 @@ section {
 #right-arrow {
     transform: rotate(180deg);
 }
-
-section > .add-button {
-    width: 20%;
-    height: 8vh;
-}
