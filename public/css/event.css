@@ -12,13 +12,6 @@ section {
     padding-bottom: 2em;
 }
 
-#page-title {
-    color: white;
-    font-weight: bold;
-    font-size: 3em;
-    margin: 0;
-}
-
 .events>div {
     background: #FFFFFF;
     border-radius: 2em;

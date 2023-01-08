@@ -180,7 +180,7 @@ header {
     border-bottom: 1px solid grey;
 }
 
-.add-event {
+.add-button {
     background: linear-gradient(180deg, #2559AD 47.92%, rgba(30, 30, 30, 0.81) 100%), linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 1em;
@@ -209,4 +209,11 @@ header {
     color: #A8A8A8;
     margin: 0;
     box-sizing: border-box;
+}
+
+#page-title {
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    margin: 0;
 }

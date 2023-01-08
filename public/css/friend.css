@@ -1,0 +1,89 @@
+section {
+    background: linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #D9D9D9;
+    border-radius: 2em;
+    margin: 1em;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 2em;
+    padding-bottom: 2em;
+}
+
+.organizer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid grey;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+}
+
+.friends-align {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.friends-align > div {
+    background: #FFFFFF;
+    border-radius: 2em;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 18%;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 70%;
+    border-bottom: 2px solid black;
+    gap: 0.5em;
+    font-size: 2em;
+}
+
+.user-info > img {
+    width: 70%;
+}
+
+.events-number {
+    margin: 0.5em auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 30%;
+    gap: 0.5em;
+    font-size: 1.2em;
+}
+
+.circle {
+    background: #2559AD;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#right-arrow {
+    transform: rotate(180deg);
+}
+
+section > .add-button {
+    width: 20%;
+    height: 8vh;
+}
