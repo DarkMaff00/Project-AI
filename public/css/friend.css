@@ -77,8 +77,3 @@ section {
     align-items: center;
     justify-content: center;
 }
-
-
-#right-arrow {
-    transform: rotate(180deg);
-}
