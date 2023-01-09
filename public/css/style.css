@@ -293,3 +293,25 @@ section > .add-button {
 .change-password-form > .form-align > .form-header {
     margin-bottom: 1em;
 }
+
+#big-logo-start {
+    width: 20vw;
+    margin-bottom: 0;
+}
+
+.page-info {
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.start-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#start-text {
+    text-align: center;
+}
