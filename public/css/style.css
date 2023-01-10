@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: "Inter", sans-serif;
 }
 
 .container {
@@ -12,7 +13,6 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-family: "Inter", sans-serif;
 }
 
 .logo {
@@ -24,21 +24,16 @@ body {
     width: 50%;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-
+.extended-form {
+    width: 70%;
     background: #FFFFFF;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
     border-radius: 1.5em;
+    padding-bottom: 1em;
 }
 
-.form-header {
+#form-header {
     font-weight: bold;
-    align-self: start;
 }
 
 
@@ -46,10 +41,9 @@ button {
     background: linear-gradient(180deg, #2559AD 47.92%, rgba(30, 30, 30, 0.81) 100%);
     border-radius: 1em;
 
-    width: 50%;
+    width: 10vw;
     border: none;
     color: white;
-    margin: 0;
     line-height: 2.5em;
 }
 
@@ -59,37 +53,36 @@ input {
     border-radius: 0.5em;
     padding: 1em;
     margin-bottom: 1em;
-    width: 90%;
+    width: calc(100% - 2em);
+    font-weight: bold;
+    font-family: "Inter", sans-serif;
 }
 
 .form-align {
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     width: 60%;
-    margin: 1em;
 }
 
 .form-align > p {
     margin-bottom: 0;
 }
 
-.horizontal-align {
+.show-password-box {
     display: flex;
-    flex-direction: row;
-    justify-content: start;
     align-items: center;
     width: 100%;
-    margin-bottom: 1em;
 }
 
-.button-align {
+.form-button-align {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-top: 2em;
 }
 
 #show {
@@ -103,11 +96,10 @@ input {
     align-items: center;
     justify-content: flex-start;
     height: 100vh;
-    font-family: "Inter", sans-serif;
 }
 
 nav {
-    width: 20vw;
+    width: 15vw;
     height: 100%;
     background: linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%);
 
@@ -118,7 +110,7 @@ nav {
 
 main {
     background: linear-gradient(180deg, #E8EFFF 0%, rgba(25, 83, 215, 0.45) 100%);
-    width: 80vw;
+    width: 85vw;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -148,7 +140,7 @@ li img {
     text-align: center;
     font-weight: bold;
     padding: 0.2rem;
-    width: 60%;
+    width: 70%;
 }
 
 ul {
@@ -188,7 +180,7 @@ header {
     color: white;
     letter-spacing: 0.1em;
     text-align: center;
-    width: 50%;
+    width: 30%;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -196,20 +188,33 @@ header {
 }
 
 .search-bar {
-    width: 70%;
+    width: 50vw;
 }
 
-.search-bar>form>input {
+.search-bar>input {
     background: #FFFFFF;
     border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 1em;
     width: 100%;
-    text-align: center;
     letter-spacing: 0.72px;
     color: #A8A8A8;
     margin: 0;
     box-sizing: border-box;
+}
+
+section {
+    background: linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #D9D9D9;
+    border-radius: 2em;
+    margin: 1em;
+    height: 100%;
+
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    grid-gap: 2em;
+    overflow: auto;
+    padding-bottom: 2em;
 }
 
 #page-title {
