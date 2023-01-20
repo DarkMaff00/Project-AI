@@ -3,7 +3,6 @@
     <link rel="icon" href="../img/main-logo.svg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/event.css">
     <title>ToMeet</title>
 </head>
 <body>
@@ -28,8 +27,8 @@
                     <a href="#" class="button">Calendar</a>
                 </li>
                 <li>
-                    <img src="../img/icons/message.svg">
-                    <a href="#" class="button">Messages</a>
+                    <img src="../img/icons/notifications.svg">
+                    <a href="#" class="button">Notifications</a>
                 </li>
                 <li>
                     <img src="../img/icons/setting.svg">
@@ -38,22 +37,19 @@
             </ul>
         </nav>
         <main>
-            <header>
-                <div class="search-bar">
-                    <form>
-                        <input placeholder="search friend">
-                    </form>
-                </div>
-                <div class="add-button">
-                    + add friend
+            <header class="user-header">
+                <div class="user-bar">
+                    <img id="bar-avatar" src="../img/avatar.svg">
+                    Login
+                    <img id="bar-arrow" src="../img/menu-arrow.svg">
                 </div>
             </header>
-            <form class="change-password-form">
+            <form class="extended-form" id="change-password-form">
                 <div class="form-align">
                     <p class="form-header">ADD FRIEND</p>
                     <p>Friend Login</p>
-                    <input name="login" type="text" placeholder="you must provide exact login">
-                    <div class="button-align">
+                    <input name="login" type="text" placeholder="login">
+                    <div class="form-button-align" id="friend-button">
                         <button>INVITE</button>  
                     </div>
                 </div>

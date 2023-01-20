@@ -128,8 +128,7 @@ a {
 }
 
 li img {
-    height: 1.5em;
-    vertical-align: middle;
+    height: 3.5vh;
 }
 
 .button {
@@ -139,8 +138,9 @@ li img {
     color: black;
     text-align: center;
     font-weight: bold;
-    padding: 0.2rem;
+    padding: 0.2em;
     width: 70%;
+    overflow: hidden;
 }
 
 ul {
@@ -155,9 +155,11 @@ ul {
 }
 
 li {
-    text-align: left;
-    color: white;
     margin-bottom: 1em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.2em;
 }
 
 li:last-child {
@@ -166,7 +168,7 @@ li:last-child {
     width: 100%;
 }
 
-header {
+.search-header {
     display: flex;
     justify-content: space-between;
     padding: 1em 2em;
@@ -214,7 +216,7 @@ section {
     justify-items: center;
     grid-gap: 2em;
     overflow: auto;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
 }
 
 #page-title {
@@ -236,8 +238,35 @@ section > .add-button {
 
 .maps {
     width: 60%;
-    overflow: hidden;
-    align-self: center;
+    margin: 1em auto;
+}
+
+.user-header {
+    display: flex;
+    justify-content: end;
+    padding: 1em 2em 0 0;
+}
+
+.user-bar {
+    background: linear-gradient(180deg, #2559AD 47.92%, rgba(30, 30, 30, 0.81) 100%), linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1em;
+    color: white;
+    letter-spacing: 0.1em;
+    padding: 0.3em 2em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#bar-avatar {
+    height: 2em;
+}
+
+#bar-arrow {
+    height: 1.5em;
 }
 
 #right-arrow {
@@ -246,12 +275,15 @@ section > .add-button {
 
 .settings {
     width: 40%;
+    height: auto;
     align-self: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1em;
+    margin: auto;
+    padding: 2em 0;
 }
 
 .login {
@@ -267,6 +299,7 @@ section > .add-button {
 .settings > .add-button {
     width: 10vw;
     height: 3em;
+    padding: 0 1em;
 }
 
 .setting {
@@ -276,7 +309,7 @@ section > .add-button {
     color: black;
     text-align: center;
     font-weight: bold;
-    padding: 0.2rem;
+    padding: 0.2em 1em;
     height: 3em;
     width: 15vw;
     display: flex;
@@ -289,14 +322,16 @@ section > .add-button {
     width: 10vw;
 }
 
-.change-password-form {
+#change-password-form {
     margin: auto;
     padding: 1em 2em;
-    width: 40%;
+    width: 30%;
 }
 
-.change-password-form > .form-align > .form-header {
-    margin-bottom: 1em;
+#change-password-form > .form-align > .form-header {
+    margin-top: 0;
+    font-size: 1em;
+    font-weight: bold;
 }
 
 #big-logo-start {
@@ -320,3 +355,13 @@ section > .add-button {
 #start-text {
     text-align: center;
 }
+
+#friend-button {
+    margin-top: 1em;
+}
+
+@media (max-width: 1250px) {
+    li > a {
+        font-size: 70%;
+    }
+  }
