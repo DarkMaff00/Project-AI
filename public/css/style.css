@@ -85,7 +85,7 @@ input, textarea {
     margin-top: 2em;
 }
 
-#show {
+.show {
     margin: 0;
     margin-right: 1em;
     width: auto;
@@ -359,6 +359,10 @@ section > .add-button {
 
 #friend-button {
     margin-top: 1em;
+}
+
+#radios {
+    margin-top: 0em;
 }
 
 @media (max-width: 1250px) {
