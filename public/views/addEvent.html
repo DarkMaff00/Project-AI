@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+    <link rel="icon" href="../img/main-logo.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>ToMeet</title>
+</head>
+<body>
+    <div class="base-container">
+        <nav>
+            <img src="../img/logo.svg">
+            <ul>
+                <li>
+                    <img src="../img/icons/event.svg">
+                    <a href="#" class="button">Events</a>
+                </li>
+                <li>
+                    <img src="../img/icons/friend.svg">
+                    <a href="#" class="button">Friends</a>
+                </li>
+                <li>
+                    <img src="../img/icons/map.svg">
+                    <a href="#" class="button">Map</a>
+                </li>
+                <li>
+                    <img src="../img/icons/calendar.svg">
+                    <a href="#" class="button">Calendar</a>
+                </li>
+                <li>
+                    <img src="../img/icons/notifications.svg">
+                    <a href="#" class="button">Notifications</a>
+                </li>
+                <li>
+                    <img src="../img/icons/setting.svg">
+                    <a href="#" class="button">Settings</a>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <header class="user-header">
+                <div class="user-bar">
+                    <img id="bar-avatar" src="../img/avatar.svg">
+                    Login
+                    <img id="bar-arrow" src="../img/menu-arrow.svg">
+                </div>
+            </header>
+            <form class="extended-form" id="change-password-form" style="margin-bottom: 2em;">
+                <div class="form-align">
+                    <p class="form-header">ADD EVENT</p>
+                    <p>Name</p>
+                    <input name="event-name" type="text">
+                    <p>Describtion</p>
+                    <textarea id="describtion"></textarea>
+                    <p>Place</p>
+                    <input name="event-place" type="text">
+                    <p>Date</p>
+                    <input name="event-date" type="date">
+                    <p>Time</p>
+                    <input name="event-time" type="time">
+                    <p>Type</p>
+                    <input name="event-type" type="text">
+                    <p>Max number of participants</p>
+                    <input name="event-name" type="number">
+                    <div class="form-button-align">
+                        <div class="show-password-box">
+                            <input type="radio" id="show">
+                            <label for="show">Private</label>
+                        </div>
+                        <div class="show-password-box">
+                            <input type="radio" id="show">
+                            <label for="show">Public</label>
+                        </div>
+                    </div>
+                    <div class="form-button-align">
+                        <button>ADD EVENT</button>  
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>

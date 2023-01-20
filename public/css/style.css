@@ -47,7 +47,7 @@ button {
     line-height: 2.5em;
 }
 
-input {
+input, textarea {
     background-color: transparent;
     border: 1px solid gray;
     border-radius: 0.5em;
@@ -114,6 +114,7 @@ main {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow: auto;
 }
 
 nav > img {
@@ -296,7 +297,7 @@ section > .add-button {
     font-weight: bold;
 }
 
-.settings > .add-button {
+.settings > .add-button, #row-4 > .add-button {
     width: 10vw;
     height: 3em;
     padding: 0 1em;
