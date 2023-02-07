@@ -7,12 +7,13 @@ body {
     width: 100vw;
     height: 100vh;
     background: linear-gradient(180deg, #2559AD 51.59%, rgba(36, 176, 196, 0.96) 100%, #24B0C4 100%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 
 .logo {
@@ -22,12 +23,13 @@ body {
 
 .login-container {
     width: 50%;
+    height: 100vh;
 }
 
 .extended-form {
     width: 70%;
     background: #FFFFFF;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
     border-radius: 1.5em;
     padding-bottom: 1em;
 }
@@ -44,6 +46,8 @@ button {
     width: 10vw;
     border: none;
     color: white;
+    font-weight: bold;
+    letter-spacing: 0.72px;
     line-height: 2.5em;
 }
 
@@ -86,8 +90,7 @@ input, textarea {
 }
 
 .show {
-    margin: 0;
-    margin-right: 1em;
+    margin: 0 1em 0 0;
     width: auto;
 }
 
@@ -178,7 +181,7 @@ li:last-child {
 
 .add-button {
     background: linear-gradient(180deg, #2559AD 47.92%, rgba(30, 30, 30, 0.81) 100%), linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 1em;
     color: white;
     letter-spacing: 0.1em;
@@ -197,7 +200,7 @@ li:last-child {
 .search-bar>input {
     background: #FFFFFF;
     border: 1px solid #000000;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 1em;
     width: 100%;
     letter-spacing: 0.72px;
@@ -250,7 +253,7 @@ section > .add-button {
 
 .user-bar {
     background: linear-gradient(180deg, #2559AD 47.92%, rgba(30, 30, 30, 0.81) 100%), linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 1em;
     color: white;
     letter-spacing: 0.1em;
@@ -295,6 +298,7 @@ section > .add-button {
     justify-content: center;
     font-size: 1.5em;
     font-weight: bold;
+    text-align: center;
 }
 
 .settings > .add-button, #row-4 > .add-button {
@@ -362,7 +366,7 @@ section > .add-button {
 }
 
 #radios {
-    margin-top: 0em;
+    margin-top: 0;
 }
 
 @media (max-width: 1250px) {

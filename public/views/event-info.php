@@ -8,49 +8,21 @@
 </head>
 <body>
     <div class="base-container">
-        <nav>
-            <img src="public/img/logo.svg">
-            <ul>
-                <li>
-                    <img src="public/img/icons/event.svg">
-                    <a href="#" class="button">Events</a>
-                </li>
-                <li>
-                    <img src="public/img/icons/friend.svg">
-                    <a href="#" class="button">Friends</a>
-                </li>
-                <li>
-                    <img src="public/img/icons/map.svg">
-                    <a href="#" class="button">Map</a>
-                </li>
-                <li>
-                    <img src="public/img/icons/calendar.svg">
-                    <a href="#" class="button">Calendar</a>
-                </li>
-                <li>
-                    <img src="public/img/icons/notifications.svg">
-                    <a href="#" class="button">Notifications</a>
-                </li>
-                <li>
-                    <img src="public/img/icons/setting.svg">
-                    <a href="#" class="button">Settings</a>
-                </li>
-            </ul>
-        </nav>
+        <?php include 'nav-bar.php'; ?>
         <main>
-            <header class="user-header">
-                <div class="user-bar">
-                    <img id="bar-avatar" src="public/img/avatar.svg">
-                    Login
-                    <img id="bar-arrow" src="public/img/menu-arrow.svg">
-                </div>
-            </header>
+            <?php
+            if (isset($_COOKIE['user'])) {
+                include 'login-bar.php';
+            } ?>
             <section class="event-information">
                 <div id="row-1">
                     <p id="page-title-info">Name</p>
                     <div class="icons">
                         <img class="change-icons" src="public/img/edit.svg">
                         <img class="change-icons" src="public/img/delete.svg">
+                        <form action="deleteEvent" method="get">
+                            <button>Usun</button>
+                        </form>
                     </div>
                 </div>
                 <div id="row-2">
@@ -69,14 +41,38 @@
                         <p>Number of participants:</p>
                     </div>
                 </div>
+                <div class="messages" style="color: red">
+                    <?php
+                    if (isset($messages)) {
+                        foreach ($messages as $message) {
+                            echo $message;
+                        }
+                    }
+                    ?>
+                </div>
                 <div id="row-4">
+                    <form action="addToEvent" method="get">
+                        <button>Add friend</button>
+                    </form>
                     <div class="add-button">
                         Add friend
                     </div>
                     <div class="add-button">
                         Leave event
                     </div>
+                    <form action="leaveEvent" method="get">
+                        <button>Leave</button>
+                    </form>
                 </div>
+            </section>
+            <section class="event-information">
+                <form action="addComment" method="post">
+                    <input type="text" name="content">
+                    <button type="submit">Add</button>
+                </form>
+                <form action="deleteComment" method="get">
+                    <button>Delete</button>
+                </form>
             </section>
         </main>
     </div>

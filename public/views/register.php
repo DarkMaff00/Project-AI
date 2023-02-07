@@ -11,13 +11,21 @@
             <img src="public/img/logo.svg">
         </div>
         <div class="login-container">
-            <form class="extended-form">
+            <form class="extended-form" action="confirmRegistration" method="POST" style="margin-top: 2em">
                 <div class="form-align">
                     <p id="form-header">SIGN UP</p>
                     <p>Login</p>
                     <input name="login" type="text">
                     <p>Email</p>
                     <input name="email" type="text">
+                    <p>Name</p>
+                    <input name="firstname" type="text">
+                    <p>Surname</p>
+                    <input name="surname" type="text">
+                    <p>Country</p>
+                    <input name="country" type="text">
+                    <p>City</p>
+                    <input name="city" type="text">
                     <p>Password</p>
                     <input name="password" type="password">
                     <p>Repeat your password</p>
@@ -26,9 +34,18 @@
                         <input type="checkbox" class="show">
                         <label for="show">Show password</label>
                     </div>
+                    <div class="messages" style="color: red">
+                        <?php
+                        if (isset($messages)) {
+                            foreach ($messages as $message) {
+                                echo $message;
+                            }
+                        }
+                        ?>
+                    </div>
                     <div class="form-button-align">
-                        <button>SIGN UP</button>
-                        <a href="#">Log in</a>  
+                        <button type="submit">SIGN UP</button>
+                        <a href="http://localhost:8080/login">Log in</a>
                     </div>
                 </div>
             </form>

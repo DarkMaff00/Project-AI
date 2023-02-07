@@ -1,8 +1,18 @@
 <?php
 
 require_once 'AppController.php';
+require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../repository/UserRepository.php';
 
 class DefaultController extends AppController{
+
+    private $userRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+    }
 
     public function index() {
         $this->render('start');
@@ -29,26 +39,22 @@ class DefaultController extends AppController{
     }
 
     public function settings() {
-        $this->render('settings');
-    }
 
-    public function addEvent() {
-        $this->render('addEvent');
-    }
-
-    public function addFriend() {
-        $this->render('addFriend');
-    }
-
-    public function changePassword() {
-        $this->render('changePassword');
-    }
-
-    public function deleteAccount() {
-        $this->render('deleteAccount');
+        $this->checkAuthentication();
+        $hash = $_COOKIE['user'];
+        $user = $this->userRepository->getUser($hash);
+        $this->render('settings', ['user' => $user]);
     }
 
     public function eventInfo() {
         $this->render('event-info');
+    }
+
+    public function logout() {
+        setcookie("user", $_COOKIE['user'], time() - 7000, "/");
+        if (isset($_COOKIE['user'])) {
+            header("Refresh:0");
+        }
+        $this->index();
     }
 }
