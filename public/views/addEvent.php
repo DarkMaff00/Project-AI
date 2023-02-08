@@ -20,16 +20,6 @@
                     <input name="name" type="text">
                     <p>Description</p>
                     <textarea name="description" id="description"></textarea>
-                    <div class="form-button-align" id="radios">
-                        <div class="show-password-box">
-                            <input name="mode" value="IRL" type="radio" class="show">
-                            <label for="show">Real Life</label>
-                        </div>
-                        <div class="show-password-box">
-                            <input name="mode" value="Online" type="radio" class="show">
-                            <label for="show">Online</label>
-                        </div>
-                    </div>
                     <p>Place</p>
                     <input name="event-place" type="text">
                     <p>Date</p>

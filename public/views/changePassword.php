@@ -3,6 +3,7 @@
     <link rel="icon" href="public/img/main-logo.svg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <script type="text/javascript" src="./public/js/showPassword.js" defer></script>
     <title>ToMeet</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
                 <div class="form-align">
                     <p class="form-header">CHANGE PASSWORD</p>
                     <p>Current Password</p>
-                    <input name="current-password" type="password">
+                    <input name="password" type="password">
                     <p>New Password</p>
                     <input name="new-password" type="password">
                     <p>Repeat New Password</p>

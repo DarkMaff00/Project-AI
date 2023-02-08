@@ -23,7 +23,7 @@ class CommentController extends AppController
         }
         $hash = $_COOKIE['user'];
         $login = $this->userRepository->getUser($hash)->getLogin();
-        $comment = new Comment(5, $login, $_POST['content']);
+        $comment = new Comment(13, $login, $_POST['content']);
         $this->commentRepository->addComment($comment);
         return $this->render('event-info', ['messages' => ['Komentarz zostal dodany']]);
     }
@@ -39,5 +39,11 @@ class CommentController extends AppController
             return $this->render('event-info', ['messages' => ['komentarz Usunieto pomyslnie']]);
         }
         return $this->render('event-info', ['messages' => ['Brak uprawnien']]);
+    }
+
+    public function eventInfo() {
+        $this->checkAuthentication();
+        $comments = $this->commentRepository->getComments(13);
+        $this->render('event-info', ['comments' => $comments]);
     }
 }

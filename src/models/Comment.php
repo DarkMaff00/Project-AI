@@ -9,12 +9,13 @@ class Comment
     private $content;
     private $addDate;
 
-    public function __construct($idEvent, $loginUser, $content, $id = 0)
+    public function __construct($idEvent, $loginUser, $content, $addDate, $id = 0)
     {
         $this->id = $id;
         $this->idEvent = $idEvent;
         $this->loginUser = $loginUser;
         $this->content = $content;
+        $this->addDate = $addDate;
     }
 
 

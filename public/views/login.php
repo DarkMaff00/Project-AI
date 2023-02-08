@@ -3,6 +3,7 @@
     <link rel="icon" href="public/img/main-logo.svg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <script type="text/javascript" src="./public/js/showPassword.js" defer></script>
     <title>ToMeet</title>
 </head>
 <body>
@@ -14,14 +15,6 @@
         <form class="extended-form" action="login" method="POST">
             <div class="form-align">
                 <p id="form-header">LOGIN</p>
-                <div class="messages">
-                    <?php if (isset($messages)) {
-                        foreach ($messages as $message) {
-                            echo $message;
-                        }
-                    }
-                    ?>
-                </div>
                 <p>Email</p>
                 <input name="email" type="text">
                 <p>Password</p>
@@ -29,6 +22,15 @@
                 <div class="show-password-box">
                     <input type="checkbox" class="show">
                     <label for="show">Show password</label>
+                </div>
+                <div class="messages" style="color: red">
+                    <?php
+                    if (isset($messages)) {
+                        foreach ($messages as $message) {
+                            echo $message;
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="form-button-align">
                     <button type="submit">LOGIN</button>

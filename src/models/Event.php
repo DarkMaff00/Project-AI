@@ -4,7 +4,6 @@ class Event
 {
     private $name;
     private $description;
-    private $mode;
     private $eventPlace;
     private $eventDate;
     private $eventTime;
@@ -14,12 +13,12 @@ class Event
     private $access;
 
     private $organizer;
+    private $id;
 
-    public function __construct($name, $description, $mode, $eventPlace,$eventDate, $eventTime, $eventType, $maxNumber, $access, $organizer)
+    public function __construct($name, $description, $eventPlace,$eventDate, $eventTime, $eventType, $maxNumber, $access, $organizer, $id = 0)
     {
         $this->name = $name;
         $this->description = $description;
-        $this->mode = $mode;
         $this->eventPlace = $eventPlace;
         $this->eventType = $eventType;
         $this->eventDate = $eventDate;
@@ -27,6 +26,12 @@ class Event
         $this->maxNumber = $maxNumber;
         $this->access = $access;
         $this->organizer = $organizer;
+        $this->id = $id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
 
@@ -73,16 +78,6 @@ class Event
     public function setDescription($description)
     {
         $this->description = $description;
-    }
-
-    public function getMode()
-    {
-        return $this->mode;
-    }
-
-    public function setMode($mode)
-    {
-        $this->mode = $mode;
     }
 
     public function getEventDate()

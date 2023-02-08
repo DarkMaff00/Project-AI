@@ -5,7 +5,7 @@ require_once __DIR__ . '/../models/Event.php';
 
 class EventRepository extends Repository
 {
-    public function getEvent(int $id)
+    public function getEvent(int $id): Event
     {
         $stmt = $this->database->connect()->prepare(
             'SELECT * FROM public.events WHERE id = :id
@@ -20,11 +20,10 @@ class EventRepository extends Repository
         return new Event (
             $event['name'],
             $event['description'],
-            $event['mode'],
-            $event['event-place'],
+            $event['place'],
             $event['eventDate'],
             $event['eventTime'],
-            $event['event-type'],
+            $event['type'],
             $event['maxNumber'],
             $event['access'],
             $event['id_organizer']
@@ -34,14 +33,13 @@ class EventRepository extends Repository
     public function addEvent(Event $event)
     {
         $stmt = $this->database->connect()->prepare(
-            'INSERT INTO events (name, description, mode, place, "eventDate", "eventTime", type, "maxNumber", access, id_organizer) 
-                    VALUES  (?,?,?,?,?,?,?,?,?,?)
+            'INSERT INTO events (name, description, place, "eventDate", "eventTime", type, "maxNumber", access, id_organizer) 
+                    VALUES  (?,?,?,?,?,?,?,?,?)
                     ');
 
         $stmt->execute([
             $event->getName(),
             $event->getDescription(),
-            $event->getMode(),
             $event->getEventPlace(),
             $event->getEventDate(),
             $event->getEventTime(),
@@ -111,14 +109,24 @@ class EventRepository extends Repository
 
         $result = $stmt->fetch();
 
-        if ($result['assigned'] >= ($result['maxNumber']-1)) {
+        if ($result['assigned'] >= ($result['maxNumber'] - 1)) {
             return false;
         }
 
         return true;
     }
 
-    public function leaveEvent(int $id, string $login){
+    public function numberOfParticipants(int $id){
+        $stmt = $this->database->connect()->prepare('
+        SELECT COUNT(*) FROM user_events WHERE id_event = :id');
+        $stmt->bindParam(':id' , $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_NUM);
+    }
+
+    public function leaveEvent(int $id, string $login)
+    {
         $stmt = $this->database->connect()->prepare('
         DELETE FROM user_events WHERE id_event = ? AND login_user = ?');
 
@@ -126,5 +134,45 @@ class EventRepository extends Repository
             $id,
             $login
         ]);
+    }
+
+    public function getEvents(string $login, string $role): array
+    {
+
+        $result = [];
+        if ($role == 'ADMIN') {
+            $stmt = $this->database->connect()->prepare('
+        SELECT * FROM events
+        ');
+            $stmt->execute();
+        } else {
+            $stmt = $this->database->connect()->prepare('
+        SELECT * from events
+        LEFT JOIN user_events ue on events.id = ue.id_event AND ue.login_user = ?
+        WHERE ue.login_user = ? OR events.id_organizer = ?
+        ');
+            $stmt->execute([
+                $login,
+                $login,
+                $login
+            ]);
+        }
+
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($events as $event) {
+            $result[] = new Event(
+                $event['name'],
+                $event['description'],
+                $event['place'],
+                $event['eventDate'],
+                $event['eventTime'],
+                $event['type'],
+                $event['maxNumber'],
+                $event['access'],
+                $event['id_organizer']
+            );
+        }
+        return $result;
     }
 }

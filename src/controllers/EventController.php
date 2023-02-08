@@ -25,13 +25,13 @@ class EventController extends AppController
         $hash = $_COOKIE['user'];
         $login = $this->userRepository->getUser($hash)->getLogin();
 
-        if ($_POST['name'] == null or $_POST['description'] == null or $_POST['mode'] == null or $_POST['event-place'] == null or $_POST['eventDate'] == null or $_POST['eventTime'] == null or $_POST['event-type'] == null or $_POST['maxNumber'] == null or $_POST['access'] == null) {
+        if ($_POST['name'] == null or $_POST['description'] == null or $_POST['event-place'] == null or $_POST['eventDate'] == null or $_POST['eventTime'] == null or $_POST['maxNumber'] == null or $_POST['access'] == null) {
             return $this->render('addEvent', ['messages' => ['Należy wypełnić wszystkie pola']]);
         }
 
-        $event = new Event($_POST['name'], $_POST['description'], $_POST['mode'], $_POST['event-place'], $_POST['eventDate'], $_POST['eventTime'], $_POST['event-type'], $_POST['maxNumber'], $_POST['access'], $login);
+        $event = new Event($_POST['name'], $_POST['description'], $_POST['event-place'], $_POST['eventDate'], $_POST['eventTime'], $_POST['event-type'], $_POST['maxNumber'], $_POST['access'], $login);
         $this->eventRepository->addEvent($event);
-        return $this->render('addEvent', ['messages' => ['Pomyslnie stworzono event']]);
+        header("Refresh:0, http://$_SERVER[HTTP_HOST]/events");
     }
 
     public function deleteEvent() {
@@ -80,5 +80,13 @@ class EventController extends AppController
         }
         $this->eventRepository->leaveEvent(5, $user->getLogin());
         return $this->render('event-info', ['messages' => ['Nie mozesz opouscic wlasnego eventu']]);
+    }
+
+    public function events() {
+        $this->checkAuthentication();
+        $hash = $_COOKIE['user'];
+        $user = $this->userRepository->getUser($hash);
+        $events = $this->eventRepository->getEvents($user->getLogin(), $user->getRole());
+        $this->render('events', ['events' => $events]);
     }
 }

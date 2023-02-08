@@ -65,7 +65,8 @@ class UserRepository extends Repository
         ]);
     }
 
-    public function deleteUser($login) {
+    public function deleteUser($login)
+    {
         $stmt = $this->database->connect()->prepare('
            SELECT id_user_details FROM users WHERE login =:login
         ');
@@ -86,8 +87,9 @@ class UserRepository extends Repository
         $stmt->execute();
     }
 
-    public function changePassword($login, $password) {
-        $stmt =$this->database->connect()->prepare('
+    public function changePassword($login, $password)
+    {
+        $stmt = $this->database->connect()->prepare('
         UPDATE users SET password= :password WHERE login = :login
         ');
 
@@ -96,7 +98,8 @@ class UserRepository extends Repository
         $stmt->execute();
     }
 
-    public function checkIfLoginExists($login): bool {
+    public function checkIfLoginExists($login): bool
+    {
         $stmt = $this->database->connect()->prepare('
         SELECT * FROM users WHERE login = :login
         ');
@@ -105,7 +108,8 @@ class UserRepository extends Repository
         return $stmt->rowCount() == 0;
     }
 
-    public function checkIfAlreadyFriends($requesterLogin, $addresserLogin): bool {
+    public function checkIfAlreadyFriends($requesterLogin, $addresserLogin): bool
+    {
         $stmt = $this->database->connect()->prepare('
         SELECT * FROM friendship WHERE ("requesterLogin" = :requesterLogin AND "AddresserLogin" = :addresserLogin)
         OR ("requesterLogin" = :addresserLogin AND "AddresserLogin" = :requesterLogin)
@@ -116,15 +120,61 @@ class UserRepository extends Repository
         return $stmt->rowCount() == 0;
     }
 
-    public function addFriend($yourLogin,$friendLogin) {
+    public function addFriend($yourLogin, $friendLogin)
+    {
         $stmt = $this->database->connect()->prepare('
         INSERT INTO friendship 
-        VALUES (?,?,?)');
+        VALUES (?,?)');
 
         $stmt->execute([
             $yourLogin,
-            $friendLogin,
-            date('Y-m-d H:i')
+            $friendLogin
         ]);
+    }
+
+    public function getFriends(string $login, string $role): array
+    {
+
+        $result = [];
+        if ($role == 'ADMIN') {
+            $stmt = $this->database->connect()->prepare('
+        SELECT * FROM users
+        ');
+            $stmt->execute();
+        } else {
+            $stmt = $this->database->connect()->prepare('
+        SELECT DISTINCT users.*
+    FROM users
+    JOIN friendship f ON users.login = f."AddresserLogin" OR users.login = f."requesterLogin"
+    WHERE ( "AddresserLogin" = ? OR "requesterLogin" = ? ) AND users.login != ?
+        ');
+            $stmt->execute([
+                $login,
+                $login,
+                $login
+            ]);
+        }
+
+        $friends = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($friends as $friend) {
+            $stmt2 = $this->database->connect()->prepare('
+        SELECT * FROM public.user_details WHERE id =  :id');
+            $stmt2->bindParam(':id', $friend['id_user_details'], PDO::PARAM_INT);
+            $stmt2->execute();
+
+            $details = $stmt2->fetch(PDO::FETCH_ASSOC);
+            $result[] = new User(
+                $friend['email'],
+                $friend['login'],
+                $friend['password'],
+                $details['firstname'],
+                $details['surname'],
+                $details['country'],
+                $details['city'],
+                $friend['role']
+            );
+        }
+        return $result;
     }
 }

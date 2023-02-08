@@ -22,11 +22,11 @@ class DefaultController extends AppController{
         $this->render('events');
     }
 
-    public function login() {
-        $this->render('login');
-    }
-
     public function register() {
+        if (isset($_COOKIE['user'])) {
+            $url = "htp://$_SERVER[HTTP_HOST]";
+            HEADER("Location: {$url}/");
+        }
         $this->render('register');
     }
 
@@ -55,6 +55,6 @@ class DefaultController extends AppController{
         if (isset($_COOKIE['user'])) {
             header("Refresh:0");
         }
-        $this->index();
+        header("Refresh:0, http://$_SERVER[HTTP_HOST]/");
     }
 }

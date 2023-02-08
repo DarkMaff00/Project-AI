@@ -3,6 +3,7 @@
     <link rel="icon" href="public/img/main-logo.svg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <script type="text/javascript" src="./public/js/showPassword.js" defer></script>
     <title>ToMeet</title>
 </head>
 <body>

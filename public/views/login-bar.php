@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <script type="text/javascript" src="./public/js/nav.js" defer></script>
 </head>
 <header class="user-header">
     <div class="user-bar">
@@ -10,6 +11,5 @@
         $user = new UserRepository();
         echo $user->getUser($_COOKIE['user'])->getLogin();
         ?>
-        <img id="bar-arrow" src="public/img/menu-arrow.svg">
     </div>
 </header>

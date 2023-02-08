@@ -15,17 +15,11 @@ class RegistrationController extends AppController
 
     public function confirmRegistration()
     {
-        if ($_POST['login'] == null or $_POST['email'] == null or $_POST['firstname'] == null or $_POST['surname'] == null or $_POST['country'] == null or $_POST['city'] == null)
-            return $this->render('register', ['messages' => ['Należy wypełnić wszystkie pola']]);
-        if ($_POST['password'] != $_POST['extra-password']) {
-            return $this->render('register', ['messages' => ['Błędnie powtórzono hasło']]);
-        }
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            return $this->render('register', ['messages' => ['Błędny adres email']]);
-        }
-        if (!$this->isPost()) {
+        if(!$this->isPost()) {
             return $this->render('register');
         }
+        if ($_POST['login'] == null or $_POST['email'] == null or $_POST['firstname'] == null or $_POST['surname'] == null or $_POST['country'] == null or $_POST['city'] == null)
+            return $this->render('register', ['messages' => ['Należy wypełnić wszystkie pola']]);
 
         $email = $_POST['email'];
         $user = null;
@@ -86,7 +80,7 @@ class RegistrationController extends AppController
         $hash = $_COOKIE['user'];
         $user = $this->userRepository->getUser($hash);
 
-        $password = $_POST["current-password"];
+        $password = $_POST["password"];
 
         if (!password_verify($password, $user->getPassword())) {
             return $this->render('changePassword', ['messages' => ['Wrong password']]);
@@ -111,6 +105,9 @@ class RegistrationController extends AppController
 
         $login = $_POST["login"];
 
+        if( $user->getLogin() == $login){
+            return $this->render('addFriend', ['messages' => ['Nie mozesz dodac siebie do znajomych']]);
+        }
         if ($this->userRepository->checkIfLoginExists($login)) {
             return $this->render('addFriend', ['messages' => ['Uzytkownik nie istnieje']]);
         }
@@ -120,6 +117,14 @@ class RegistrationController extends AppController
         }
 
         $this->userRepository->addFriend($user->getLogin(), $login);
-        header("Refresh:0, http://$_SERVER[HTTP_HOST]/");
+        header("Refresh:0, http://$_SERVER[HTTP_HOST]/friends");
+    }
+
+    public function friends() {
+        $this->checkAuthentication();
+        $hash = $_COOKIE['user'];
+        $user = $this->userRepository->getUser($hash);
+        $friends = $this->userRepository->getFriends($user->getLogin(),$user->getRole());
+        $this->render('friends', ['friends' => $friends]);
     }
 }
