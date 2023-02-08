@@ -17,19 +17,19 @@
                 <div class="form-align">
                     <p class="form-header">ADD EVENT</p>
                     <p>Name</p>
-                    <input name="name" type="text">
+                    <input maxlength="50" name="name" type="text">
                     <p>Description</p>
-                    <textarea name="description" id="description"></textarea>
+                    <textarea name="description" id="description" maxlength="200"></textarea>
                     <p>Place</p>
-                    <input name="event-place" type="text">
+                    <input maxlength="50" name="event-place" type="text">
                     <p>Date</p>
                     <input name="eventDate"  type="date">
                     <p>Time</p>
                     <input name="eventTime" type="time">
                     <p>Type</p>
-                    <input name="event-type" type="text">
+                    <input maxlength="50" name="event-type" type="text">
                     <p>Max number of participants</p>
-                    <input name="maxNumber" type="number">
+                    <input min="1" name="maxNumber" type="number">
                     <div class="form-button-align" id="radios">
                         <div class="show-password-box">
                             <input name="access" value="private" type="radio" class="show">

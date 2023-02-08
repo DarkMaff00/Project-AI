@@ -3,7 +3,7 @@
     <link rel="icon" href="public/img/main-logo.svg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <script type="text/javascript" src="./public/js/script.js" defer></script>
+    <script type="text/javascript" src="./public/js/registerValidation.js" defer></script>
     <title>ToMeet</title>
 </head>
 <body>
@@ -16,19 +16,19 @@
                 <div class="form-align">
                     <p id="form-header">SIGN UP</p>
                     <p>Login</p>
-                    <input name="login" type="text">
+                    <input maxlength="30" name="login" type="text">
                     <p>Email</p>
-                    <input name="email" type="text">
+                    <input maxlength="200" name="email" type="text">
                     <p>Name</p>
-                    <input name="firstname" type="text">
+                    <input maxlength="50" name="firstname" type="text">
                     <p>Surname</p>
-                    <input name="surname" type="text">
+                    <input maxlength="50" name="surname" type="text">
                     <p>Country</p>
-                    <input name="country" type="text">
+                    <input maxlength="50" name="country" type="text">
                     <p>City</p>
-                    <input name="city" type="text">
+                    <input maxlength="50" name="city" type="text">
                     <p>Password</p>
-                    <input name="password" type="password">
+                    <input maxlength="200" name="password" type="password">
                     <p>Repeat your password</p>
                     <input name="extra-password" type="password">
                     <div class="show-password-box">
