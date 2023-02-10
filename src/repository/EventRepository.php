@@ -31,11 +31,6 @@ class EventRepository extends Repository
         );
     }
 
-    public function haveAccess(string $login)
-    {
-
-    }
-
     public function addEvent(Event $event)
     {
         $stmt = $this->database->connect()->prepare(
@@ -200,10 +195,5 @@ class EventRepository extends Repository
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function deleteOldEvents()
-    {
-
     }
 }

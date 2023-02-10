@@ -18,24 +18,12 @@ class DefaultController extends AppController{
         $this->render('start');
     }
 
-    public function events() {
-        $this->render('events');
-    }
-
     public function register() {
         if (isset($_COOKIE['user'])) {
             $url = "htp://$_SERVER[HTTP_HOST]";
             HEADER("Location: {$url}/");
         }
         $this->render('register');
-    }
-
-    public function friends() {
-        $this->render('friends');
-    }
-
-    public function map() {
-        $this->render('map');
     }
 
     public function settings() {

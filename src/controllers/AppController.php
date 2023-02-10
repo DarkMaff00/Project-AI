@@ -13,11 +13,6 @@ class AppController
         return $this->request === 'POST';
     }
 
-    protected function isGet(): bool {
-        return $this->request === 'GET';
-    }
-
-
     protected function render(string $template = null, array $variables = [])
     {
         $templatePath = 'public/views/' . $template . '.php';

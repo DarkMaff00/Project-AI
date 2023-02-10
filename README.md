@@ -1,3 +1,4 @@
+# Screenshots of views are in folder screen
 <p align="center">
 <img src="https://github.com/DarkMaff00/Project-AI/blob/main/public/img/logo.svg" width="500" height="100">
 </p>
