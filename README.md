@@ -50,4 +50,4 @@ docker compose up
 
 # Database
 
-![](./database/ERD.pdf)
+![](./database/ERD.png)
