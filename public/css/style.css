@@ -214,11 +214,7 @@ section {
     border-radius: 2em;
     margin: 1em;
     height: 100%;
-
-    display: grid;
-    align-items: start;
-    justify-items: center;
-    grid-gap: 2em;
+    gap: 2em;
     overflow: auto;
     padding-bottom: 1em;
 }
@@ -374,6 +370,10 @@ section > .add-button {
     border-radius: 1em;
     box-shadow: 0 0 0.2em red;
     outline: none;
+}
+
+#user-login {
+    z-index: 100;
 }
 
 @media (max-width: 1250px) {

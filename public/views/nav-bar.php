@@ -16,10 +16,6 @@
             <a href="http://localhost:8080/friends" class="button">Friends</a>
         </li>
         <li>
-            <img src="public/img/icons/notifications.svg">
-            <a href="#" class="button">Notifications</a>
-        </li>
-        <li>
             <img src="public/img/icons/setting.svg">
             <a href="http://localhost:8080/settings" class="button">Settings</a>
         </li>

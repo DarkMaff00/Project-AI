@@ -34,59 +34,141 @@ class EventController extends AppController
         header("Refresh:0, http://$_SERVER[HTTP_HOST]/events");
     }
 
-    public function deleteEvent() {
-        $this->checkAuthentication();
-
-        $hash = $_COOKIE['user'];
-        $user = $this->userRepository->getUser($hash);
-        $event = $this->eventRepository->getEvent(5);
-
-        if ($event->getOrganizer() == $user->getLogin() OR $user->getRole() == 'ADMIN') {
-            $this->eventRepository->deleteEvent(5);
-            return $this->render('event-info', ['messages' => ['Usunieto pomyslnie']]);
-        }
-        return $this->render('event-info', ['messages' => ['Brak uprawnien']]);
-    }
-
-    public function addToEvent() {
+    public function deleteEvent(int $id)
+    {
         $this->checkAuthentication();
         $hash = $_COOKIE['user'];
         $user = $this->userRepository->getUser($hash);
-        $event = $this->eventRepository->getEvent(5);
-        if($event->getAccess() == 'private' AND $user->getLogin() != $event->getOrganizer()){
-            return $this->render('event-info', ['messages' => ['Brak uprawnien']]);
+        $event = $this->eventRepository->getEvent($id);
+
+        if ($event->getOrganizer() == $user->getLogin() || $user->getRole() == 'ADMIN') {
+            $this->eventRepository->deleteEvent($id);
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo json_encode(['message' => 'Event deleted successfully']);
+            return;
         }
-        $login = 'jan16';
-        if($this->userRepository->checkIfAlreadyFriends($user->getLogin(), $login)){
-            return $this->render('event-info', ['messages' => ['Nie masz takiego uzytkownika w znajomych']]);
-        }
-        if($this->eventRepository->checkIfAssigned(5,$login)){
-            return $this->render('event-info', ['messages' => ['Ten uæytkownik jest juz w tym evencie']]);
-        }
-        if(!$this->eventRepository->checkUserLimit(5)){
-            return $this->render('event-info', ['messages' => ['Ten event osiagnal limit uzytkownikow']]);
-        }
-        $this->eventRepository->addToEvent(5,$login);
-        return $this->render('event-info', ['messages' => ['Uzytkownik zostal dodany do eventu']]);
+
+        header('Content-type: application/json');
+        http_response_code(400);
+        echo json_encode(['error' => 'You do not have the required permissions to delete this event']);
     }
 
-    public function leaveEvent() {
+    public function addToEvent(int $id)
+    {
         $this->checkAuthentication();
         $hash = $_COOKIE['user'];
         $user = $this->userRepository->getUser($hash);
-        $event = $this->eventRepository->getEvent(5);
-        if($event->getOrganizer() == $user->getLogin()){
-            return $this->render('event-info', ['messages' => ['Nie mozesz opouscic wlasnego eventu']]);
+
+        $event = $this->eventRepository->getEvent($id);
+
+
+        if ($event->getAccess() === 'private' && $user->getLogin() !== $event->getOrganizer()) {
+            header('Content-type: application/json');
+            http_response_code(401);
+            echo json_encode(['error' => 'Not authorized']);
+            return;
         }
-        $this->eventRepository->leaveEvent(5, $user->getLogin());
-        return $this->render('event-info', ['messages' => ['Nie mozesz opouscic wlasnego eventu']]);
+
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            $friendLogin = $decoded['login-friend'];
+
+            if($this->userRepository->getUser($friendLogin) == null) {
+                header('Content-type: application/json');
+                http_response_code(400);
+                echo json_encode(['error' => 'This user does not exist']);
+                return;
+            }
+
+            if ($this->userRepository->checkIfAlreadyFriends($user->getLogin(), $friendLogin)) {
+                header('Content-type: application/json');
+                http_response_code(400);
+                echo json_encode(['error' => 'This user is not in your friends list']);
+                return;
+            }
+
+            if ($this->eventRepository->checkIfAssigned($id, $friendLogin)) {
+                header('Content-type: application/json');
+                http_response_code(400);
+                echo json_encode(['error' => 'This user is already in this event']);
+                return;
+            }
+
+            if (!$this->eventRepository->checkUserLimit($id)) {
+                header('Content-type: application/json');
+                http_response_code(400);
+                echo json_encode(['error' => 'This event has reached the user limit']);
+                return;
+            }
+
+            $this->eventRepository->addToEvent($id, $friendLogin);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo json_encode(['message' => 'User added to the event successfully']);
+        }
     }
 
-    public function events() {
+    public function leaveEvent(int $id)
+    {
+        $this->checkAuthentication();
+        $hash = $_COOKIE['user'];
+        $user = $this->userRepository->getUser($hash);
+        $event = $this->eventRepository->getEvent($id);
+        if ($event->getOrganizer() == $user->getLogin()) {
+            header('Content-type: application/json');
+            http_response_code(400);
+            echo json_encode(['error' => 'You cannot leave your own event']);
+            return;
+        }
+
+        $this->eventRepository->leaveEvent($id, $user->getLogin());
+        header('Content-type: application/json');
+        http_response_code(200);
+        echo json_encode(['message' => 'Event left successfully']);
+    }
+
+    public function events()
+    {
         $this->checkAuthentication();
         $hash = $_COOKIE['user'];
         $user = $this->userRepository->getUser($hash);
         $events = $this->eventRepository->getEvents($user->getLogin(), $user->getRole());
-        $this->render('events', ['events' => $events]);
+        $members = [];
+        foreach ($events as $event) {
+            $members[$event->getId()] = $this->eventRepository->numberOfParticipants($event->getId());
+        }
+        $this->render('events', ['events' => $events, 'members' => $members]);
+    }
+
+    public function search()
+    {
+        $this->checkAuthentication();
+        $hash = $_COOKIE['user'];
+        $user = $this->userRepository->getUser($hash);
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            echo json_encode($this->eventRepository->getEventByTitle($user->getLogin(), $user->getRole(), $decoded['search']));
+        }
+    }
+
+    public function eventInfo(int $id)
+    {
+        $this->checkAuthentication();
+        $event = $this->eventRepository->getEvent($id);
+        $member = $this->eventRepository->numberOfParticipants($id);
+        $this->render('event-info', ['event' => $event, 'member' => $member]);
     }
 }

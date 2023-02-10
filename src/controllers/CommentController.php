@@ -15,35 +15,33 @@ class CommentController extends AppController
         $this->userRepository = new UserRepository();
     }
 
-    public function addComment()
+    public function addComment(int $id)
     {
-        $this->checkAuthentication();
-        if (!$this->isPost()) {
-            return $this->render('event-info');
-        }
-        $hash = $_COOKIE['user'];
-        $login = $this->userRepository->getUser($hash)->getLogin();
-        $comment = new Comment(13, $login, $_POST['content']);
-        $this->commentRepository->addComment($comment);
-        return $this->render('event-info', ['messages' => ['Komentarz zostal dodany']]);
-    }
-
-    public function deleteComment()
-    {
-        $this->checkAuthentication();
         $hash = $_COOKIE['user'];
         $user = $this->userRepository->getUser($hash);
-        $comment = $this->commentRepository->getComment(1);
-        if ($comment->getLoginUser() == $user->getLogin() or $user->getRole() == 'ADMIN') {
-            $this->commentRepository->deleteComment(1);
-            return $this->render('event-info', ['messages' => ['komentarz Usunieto pomyslnie']]);
+
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            $content = $decoded['content'];
+
+            $comment = new Comment($id, $user->getLogin(), $content, date('Y/m/d H:i:s'));
+            $this->commentRepository->addComment($comment);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo json_encode(['message' => 'Comment added to the event successfully']);
         }
-        return $this->render('event-info', ['messages' => ['Brak uprawnien']]);
     }
 
-    public function eventInfo() {
-        $this->checkAuthentication();
-        $comments = $this->commentRepository->getComments(13);
-        $this->render('event-info', ['comments' => $comments]);
+    public
+    function comments(int $id)
+    {
+        header('Content-type: application/json');
+        http_response_code(200);
+        echo json_encode($this->commentRepository->getComments($id));
     }
 }

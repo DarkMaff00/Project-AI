@@ -45,26 +45,12 @@ class CommentRepository extends Repository
         $stmt->execute([$id]);
     }
 
-    public function getComments(int $idEvent): array
+    public function getComments(int $idEvent)
     {
-
-        $result = [];
         $stmt = $this->database->connect()->prepare('
         SELECT * from comments WHERE id_event = ?
         ');
         $stmt->execute([$idEvent]);
-
-
-        $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($comments as $comment) {
-            $result[] = new Comment(
-                $comment['id_event'],
-                $comment['login_user'],
-                $comment['content'],
-                $comment['add_date']
-            );
-        }
-        return $result;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

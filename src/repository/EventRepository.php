@@ -26,7 +26,8 @@ class EventRepository extends Repository
             $event['type'],
             $event['maxNumber'],
             $event['access'],
-            $event['id_organizer']
+            $event['id_organizer'],
+            $event['id']
         );
     }
 
@@ -116,13 +117,14 @@ class EventRepository extends Repository
         return true;
     }
 
-    public function numberOfParticipants(int $id){
+    public function numberOfParticipants(int $id)
+    {
         $stmt = $this->database->connect()->prepare('
         SELECT COUNT(*) FROM user_events WHERE id_event = :id');
-        $stmt->bindParam(':id' , $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_NUM);
+        return $stmt->fetchColumn() + 1;
     }
 
     public function leaveEvent(int $id, string $login)
@@ -170,9 +172,37 @@ class EventRepository extends Repository
                 $event['type'],
                 $event['maxNumber'],
                 $event['access'],
-                $event['id_organizer']
+                $event['id_organizer'],
+                $event['id']
             );
         }
         return $result;
+    }
+
+    public function getEventByTitle(string $login, string $role, string $searchString)
+    {
+        $searchString = '%' . strtolower($searchString) . '%';
+
+        if ($role == 'ADMIN') {
+            $stmt = $this->database->connect()->prepare('
+        SELECT events.*, count(user_events.id_event)+1 as participants FROM events 
+        LEFT JOIN user_events on events.id = user_events.id_event
+        WHERE LOWER(events.name) LIKE :search OR LOWER(events.description) LIKE :search OR LOWER(events.type) LIKE :search
+        GROUP BY events.id
+        ');
+        } else {
+            $stmt = $this->database->connect()->prepare('
+        SELECT events.*, count(ue.id_event)+1 as participants FROM events
+        LEFT JOIN user_events ue on events.id = ue.id_event
+        WHERE (ue.login_user = :login OR events.id_organizer = :login)
+        AND (LOWER(events.name) LIKE :search OR LOWER(events.description) LIKE :search OR LOWER(events.type)  LIKE :search)
+        GROUP BY events.id
+        ');
+            $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+        }
+        $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

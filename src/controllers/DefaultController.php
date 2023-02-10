@@ -46,10 +46,6 @@ class DefaultController extends AppController{
         $this->render('settings', ['user' => $user]);
     }
 
-    public function eventInfo() {
-        $this->render('event-info');
-    }
-
     public function logout() {
         setcookie("user", $_COOKIE['user'], time() - 7000, "/");
         if (isset($_COOKIE['user'])) {
