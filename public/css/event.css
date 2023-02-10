@@ -1,0 +1,261 @@
+.events {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.events > div {
+    background: #FFFFFF;
+    border-radius: 2em;
+    display: flex;
+    height: 120px;
+    justify-content: start;
+    align-items: center;
+    width: 80%;
+}
+
+.organizer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid grey;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+}
+
+p {
+    color: black;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid grey;
+    justify-content: start;
+    width: 40%;
+    height: 100%;
+    overflow: auto;
+    padding: 0 0.2em;
+}
+
+#event-title {
+    font-size: 1.5em;
+}
+
+.event-information {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em 0;
+    gap: 0;
+    width: 50%;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em 0;
+    gap: 1em;
+    width: 50%;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 1em;
+    background: white;
+    overflow: visible;
+}
+
+.comment {
+    width: 80%;
+    background-color: white;
+    border-radius: 1em;
+    display: flex;
+    height: 8vh;
+}
+
+.comment-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid black;
+}
+
+.comment-content {
+    margin: 0.5em;
+}
+
+#row-1 {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    border-bottom: 1px solid white;
+    margin-bottom: 1em;
+}
+
+.change-icons {
+    height: 4vh;
+    margin-right: 1em;
+}
+
+.icons {
+    flex: 0 1 auto;
+    margin-left: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#page-title-info {
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 0;
+    align-self: center;
+    flex: 0 1 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#row-2 {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 0 4em 1em 4em;
+    width: calc(100% - 8em);
+    border-bottom: 1px solid white;
+}
+
+#row-3 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px solid white;
+    width: 100%;
+    gap: 2em;
+}
+
+
+#organizer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    border-right: 1px solid white;
+    padding: 1em;
+    color: white;
+    font-weight: bold;
+}
+
+#event-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.2em;
+    padding: 1em 0;
+}
+
+#event-data > p {
+    color: white;
+}
+
+#row-4 {
+    padding-top: 1em;
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+    .search-header > .add-button {
+        width: 50%;
+        margin: 0 0.5em;
+    }
+
+    .search-header > .search-bar {
+        width: 50%;
+        margin: 0 0.5em;
+    }
+
+    .forms {
+        width: 80%;
+    }
+
+    .event-information {
+        width: 80%;
+    }
+
+    #row-4 > .add-button {
+        width: 30vw;
+    }
+
+    #add-comment, #add-friend {
+        width: 30vw;
+    }
+
+    .comments {
+        width: 80%;
+    }
+
+    .comment-info {
+        width: 30%;
+        padding: 0.1em;
+    }
+
+    .comment-info > p {
+        text-align: center;
+    }
+
+    .events > div {
+        height: 50vh;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        width: 80%;
+        padding: 0.1em;
+    }
+    .organizer {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid black;
+    }
+
+    .name {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid black;
+    }
+    .name > p {
+        text-align: center;
+    }
+}

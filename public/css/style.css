@@ -1,0 +1,506 @@
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(180deg, #2559AD 51.59%, rgba(36, 176, 196, 0.96) 100%, #24B0C4 100%);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.logo {
+    width: 50%;
+    text-align: center;
+}
+
+.login-container {
+    width: 50%;
+    height: 100vh;
+}
+
+.extended-form {
+    width: 70%;
+    background: #FFFFFF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 1.5em;
+    padding-bottom: 1em;
+}
+
+#form-header {
+    font-weight: bold;
+}
+
+
+button {
+    background: linear-gradient(180deg, #2559AD 47.92%, rgba(30, 30, 30, 0.81) 100%);
+    border-radius: 1em;
+
+    width: 10vw;
+    border: none;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.72px;
+    line-height: 2.5em;
+}
+
+input, textarea {
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin-bottom: 1em;
+    width: calc(100% - 2em);
+    font-weight: bold;
+    font-family: "Inter", sans-serif;
+}
+
+.form-align {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+}
+
+.form-align > p {
+    margin-bottom: 0;
+}
+
+.show-password-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.form-button-align {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 2em;
+}
+
+.show {
+    margin: 0 1em 0 0;
+    width: auto;
+}
+
+.base-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+nav {
+    width: 15vw;
+    height: 100%;
+    background: linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+main {
+    background: linear-gradient(180deg, #E8EFFF 0%, rgba(25, 83, 215, 0.45) 100%);
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: auto;
+}
+
+nav > img {
+    width: 60%;
+    margin: 2em auto;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 2em;
+}
+
+li img {
+    height: 3.5vh;
+}
+
+.button {
+    background: #FFFFFF;
+    border-radius: 1em;
+    letter-spacing: 0.72px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.2em;
+    width: 70%;
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none;
+    letter-spacing: 0.72px;
+    color: #FFFFFF;
+    height: 100%;
+    width: calc(100% - 40px);
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.2em;
+}
+
+li:last-child {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.search-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    border-bottom: 1px solid grey;
+}
+
+.add-button {
+    background: linear-gradient(180deg, #2559AD 47.92%, rgba(30, 30, 30, 0.81) 100%), linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #FFFFFF;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1em;
+    color: white;
+    letter-spacing: 0.1em;
+    text-align: center;
+    width: 30%;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar {
+    width: 50vw;
+}
+
+.search-bar>input {
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1em;
+    width: 100%;
+    letter-spacing: 0.72px;
+    color: #A8A8A8;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+section {
+    background: linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #D9D9D9;
+    border-radius: 2em;
+    margin: 1em;
+    height: 100%;
+    gap: 2em;
+    overflow: auto;
+    padding-bottom: 1em;
+}
+
+#page-title {
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    margin: 0;
+}
+
+#map {
+    width: 70%;
+    margin: 0;
+}
+
+section > .add-button {
+    width: 20%;
+    height: 8vh;
+}
+
+.maps {
+    width: 60%;
+    margin: 1em auto;
+}
+
+.user-header {
+    display: flex;
+    justify-content: end;
+    padding: 1em 2em 0 0;
+}
+
+.user-bar {
+    background: linear-gradient(180deg, #2559AD 47.92%, rgba(30, 30, 30, 0.81) 100%), linear-gradient(180deg, #2559AD 51.59%, #24B0C3 100%), #FFFFFF;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1em;
+    color: white;
+    letter-spacing: 0.1em;
+    padding: 0.3em 2em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#bar-avatar {
+    height: 2em;
+}
+
+#bar-arrow {
+    height: 1.5em;
+}
+
+#right-arrow {
+    transform: rotate(180deg);
+}
+
+.settings {
+    width: 40%;
+    height: auto;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin: auto;
+    padding: 2em 0;
+}
+
+.login {
+    color: white;
+    padding: 0.2em 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.settings > .add-button, #row-4 > .add-button {
+    width: 10vw;
+    height: 3em;
+    padding: 0 1em;
+}
+
+.setting {
+    background: #FFFFFF;
+    border-radius: 1em;
+    letter-spacing: 0.72px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.2em 1em;
+    height: 3em;
+    width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+#big-logo {
+    width: 10vw;
+}
+
+#change-password-form {
+    margin: auto;
+    padding: 1em 2em;
+    width: 30%;
+}
+
+#change-password-form > .form-align > .form-header {
+    margin-top: 0;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#big-logo-start {
+    width: 20vw;
+    margin-bottom: 0;
+}
+
+.page-info {
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.start-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#start-text {
+    text-align: center;
+}
+
+#friend-button {
+    margin-top: 1em;
+}
+
+#radios {
+    margin-top: 0;
+}
+
+.no-valid {
+    border: 3px solid red;
+    border-radius: 1em;
+    box-shadow: 0 0 0.2em red;
+    outline: none;
+}
+
+#user-login {
+    z-index: 100;
+}
+
+#login {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+menu {
+    display: none;
+}
+
+@media (max-width: 1250px) {
+    li > a {
+        font-size: 70%;
+    }
+  }
+
+@media screen and (max-width: 800px) {
+
+    .container {
+        flex-direction: column;
+        justify-content: start;
+        gap: 1em;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+        vertical-align: bottom;
+    }
+
+    .logo > img {
+        height: 15vh;
+    }
+
+
+    .login-container {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding-top: 1em;
+    }
+
+    #login {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .extended-form {
+        width: 100%;
+        transform: scale(0.7);
+    }
+
+    #change-password-form {
+        width: 80%;
+    }
+
+    .form-button-align > button {
+        width: 30vw;
+    }
+
+    button {
+        width: 20vw;
+    }
+
+    nav {
+        display: none;
+        visibility: hidden;
+        width: 0;
+    }
+
+
+    main {
+        width: 100vw;
+    }
+
+    .user-header {
+        display: none;
+        height: 0;
+    }
+
+    section > .add-button {
+        width: 40vw;
+    }
+
+    #big-logo-start {
+        width: 30vw;
+    }
+
+    menu {
+        width:100vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background-color: #2559AD;
+        margin: 0;
+        padding: 0.5em 0;
+        height: 30px;
+    }
+
+    .base-container {
+        flex-direction: column;
+    }
+
+    menu > a > img {
+        height: 1.8em;
+    }
+
+    .settings {
+        width: 80%;
+    }
+
+    .setting {
+        width: 30vw;
+    }
+
+    .settings > form > button {
+        width: 30vw;
+    }
+
+    .login {
+        font-size: 1em;
+    }
+
+    #big-logo {
+        width: 20vw;
+    }
+}
