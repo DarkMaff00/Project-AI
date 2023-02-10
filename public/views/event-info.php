@@ -64,6 +64,7 @@
         <section class="comments">
         </section>
     </main>
+    <?php include 'menu.php'; ?>
 </div>
 </body>
 

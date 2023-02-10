@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <script type="text/javascript" src="./public/js/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width" />
 </head>
 <nav>
     <img alt="main-logo" src="public/img/logo.svg">

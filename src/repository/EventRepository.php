@@ -5,7 +5,7 @@ require_once __DIR__ . '/../models/Event.php';
 
 class EventRepository extends Repository
 {
-    public function getEvent(int $id): Event
+    public function getEvent(int $id)
     {
         $stmt = $this->database->connect()->prepare(
             'SELECT * FROM public.events WHERE id = :id
@@ -13,8 +13,8 @@ class EventRepository extends Repository
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $event = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (!$event) {
-            throw new UnexpectedValueException();
+        if ($event == null) {
+            header("Refresh:0, http://$_SERVER[HTTP_HOST]/");
         }
 
         return new Event (
@@ -29,6 +29,11 @@ class EventRepository extends Repository
             $event['id_organizer'],
             $event['id']
         );
+    }
+
+    public function haveAccess(string $login)
+    {
+
     }
 
     public function addEvent(Event $event)
@@ -95,22 +100,13 @@ class EventRepository extends Repository
     public function checkUserLimit(int $eventId): bool
     {
         $stmt = $this->database->connect()->prepare('
-        SELECT "maxNumber", (
-            SELECT COUNT(*)
-            FROM user_events
-            WHERE id_event = ?
-        ) as assigned
-        FROM events
-        WHERE id = ?');
+        SELECT number_of_attendees, "maxNumber" FROM event_attendees WHERE id = ?');
 
-        $stmt->execute([
-            $eventId,
-            $eventId
-        ]);
+        $stmt->execute([$eventId]);
 
         $result = $stmt->fetch();
 
-        if ($result['assigned'] >= ($result['maxNumber'] - 1)) {
+        if ($result['number_of_attendees'] >= ($result['maxNumber'])) {
             return false;
         }
 
@@ -120,11 +116,11 @@ class EventRepository extends Repository
     public function numberOfParticipants(int $id)
     {
         $stmt = $this->database->connect()->prepare('
-        SELECT COUNT(*) FROM user_events WHERE id_event = :id');
+        SELECT number_of_attendees FROM event_attendees WHERE id = :id');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
+        return $stmt->fetchColumn();
 
-        return $stmt->fetchColumn() + 1;
     }
 
     public function leaveEvent(int $id, string $login)
@@ -204,5 +200,10 @@ class EventRepository extends Repository
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteOldEvents()
+    {
+
     }
 }

@@ -2,6 +2,7 @@
     <link rel="icon" href="public/img/main-logo.svg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <meta name="viewport" content="width=device-width" />
     <title>ToMeet</title>
 </head>
 <body>
@@ -34,5 +35,6 @@
             </form>
         </section>
     </main>
+    <?php include 'menu.php'; ?>
 </div>
 </body>

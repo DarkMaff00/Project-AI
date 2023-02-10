@@ -57,3 +57,25 @@
 .user-text {
     margin: 0.4em 0;
 }
+
+@media screen and (max-width: 800px) {
+    .friends-align {
+        grid-template-columns: 1fr;
+    }
+
+    .user-info > img {
+        width: 50%;
+    }
+
+    #friend1 {
+        padding: 1em 0 1em 0;
+    }
+
+    .user-bar {
+        visibility: hidden;
+    }
+
+    .search-header > .add-button {
+        width: 50%;
+    }
+}

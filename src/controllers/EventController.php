@@ -168,6 +168,11 @@ class EventController extends AppController
     {
         $this->checkAuthentication();
         $event = $this->eventRepository->getEvent($id);
+        $hash = $_COOKIE['user'];
+        $user = $this->userRepository->getUser($hash);
+        if(!$this->eventRepository->checkIfAssigned($id, $user->getLogin()) and ($event->getOrganizer() != $user->getLogin()) and ($user->getRole() != 'ADMIN')){
+            header("Refresh:0, http://$_SERVER[HTTP_HOST]/events");
+        }
         $member = $this->eventRepository->numberOfParticipants($id);
         $this->render('event-info', ['event' => $event, 'member' => $member]);
     }

@@ -376,8 +376,131 @@ section > .add-button {
     z-index: 100;
 }
 
+#login {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+menu {
+    display: none;
+}
+
 @media (max-width: 1250px) {
     li > a {
         font-size: 70%;
     }
   }
+
+@media screen and (max-width: 800px) {
+
+    .container {
+        flex-direction: column;
+        justify-content: start;
+        gap: 1em;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+        vertical-align: bottom;
+    }
+
+    .logo > img {
+        height: 15vh;
+    }
+
+
+    .login-container {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding-top: 1em;
+    }
+
+    #login {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .extended-form {
+        width: 100%;
+        transform: scale(0.7);
+    }
+
+    #change-password-form {
+        width: 80%;
+    }
+
+    .form-button-align > button {
+        width: 30vw;
+    }
+
+    button {
+        width: 20vw;
+    }
+
+    nav {
+        display: none;
+        visibility: hidden;
+        width: 0;
+    }
+
+
+    main {
+        width: 100vw;
+    }
+
+    .user-header {
+        display: none;
+        height: 0;
+    }
+
+    section > .add-button {
+        width: 40vw;
+    }
+
+    #big-logo-start {
+        width: 30vw;
+    }
+
+    menu {
+        width:100vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background-color: #2559AD;
+        margin: 0;
+        padding: 0.5em 0;
+        height: 30px;
+    }
+
+    .base-container {
+        flex-direction: column;
+    }
+
+    menu > a > img {
+        height: 1.8em;
+    }
+
+    .settings {
+        width: 80%;
+    }
+
+    .setting {
+        width: 30vw;
+    }
+
+    .settings > form > button {
+        width: 30vw;
+    }
+
+    .login {
+        font-size: 1em;
+    }
+
+    #big-logo {
+        width: 20vw;
+    }
+}

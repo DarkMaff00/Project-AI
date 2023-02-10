@@ -47,5 +47,6 @@
             </div>
         </section>
     </main>
+    <?php include 'menu.php'; ?>
 </div>
 </body>

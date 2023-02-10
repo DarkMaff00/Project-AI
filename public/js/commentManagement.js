@@ -28,7 +28,7 @@ function createEvent(comment) {
     const author = clone.querySelector('#comment-author');
     author.innerHTML = comment.login_user;
     const date = clone.querySelector('#comment-date');
-    date.innerHTML = comment.add_date;
+    date.innerHTML = comment.add_date.slice(0,16);
     const content = clone.querySelector('#comment-text');
     content.innerHTML = comment.content;
     const id = clone.querySelector('#comment-1');

@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <script type="text/javascript" src="./public/js/showPassword.js" defer></script>
+    <meta name="viewport" content="width=device-width" />
     <title>ToMeet</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
     <div class="logo">
         <img src="public/img/logo.svg">
     </div>
-    <div class="login-container" style="display: flex; justify-content: start; align-items: center">
+    <div class="login-container" id="login">
         <form class="extended-form" action="login" method="POST">
             <div class="form-align">
                 <p id="form-header">LOGIN</p>

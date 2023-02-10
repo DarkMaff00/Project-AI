@@ -5,7 +5,7 @@
     align-items: center;
 }
 
-.events>div {
+.events > div {
     background: #FFFFFF;
     border-radius: 2em;
     display: flex;
@@ -48,18 +48,6 @@ p {
     font-size: 1.5em;
 }
 
-.informations {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    gap: 0.4em;
-    width: 40%;
-    height: 100%;
-    overflow: auto;
-    padding: 0 0.2em;
-}
-
 .event-information {
     display: flex;
     flex-direction: column;
@@ -68,7 +56,8 @@ p {
     padding: 1em 0;
     gap: 0;
     width: 50%;
-    margin: 2em auto;
+    margin: 0 auto;
+    overflow: visible;
 }
 
 .comments {
@@ -79,8 +68,8 @@ p {
     padding: 1em 0;
     gap: 1em;
     width: 50%;
-    margin: auto;
-    height: 200vh;
+    margin: 0 auto;
+    overflow: visible;
 }
 
 .forms {
@@ -88,12 +77,12 @@ p {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 1em 0;
     gap: 0;
     width: 50%;
-    height: 200vh;
-    margin: 2em auto;;
+    margin: 0 auto;
+    padding-top: 1em;
     background: white;
+    overflow: visible;
 }
 
 .comment {
@@ -145,7 +134,7 @@ p {
 #page-title-info {
     color: white;
     font-weight: bold;
-    font-size: 3em;
+    font-size: 2em;
     margin: 0;
     align-self: center;
     flex: 0 1 auto;
@@ -160,8 +149,8 @@ p {
     margin-bottom: 0;
     text-align: center;
     padding: 0 4em 1em 4em;
+    width: calc(100% - 8em);
     border-bottom: 1px solid white;
-    width: 100%;
 }
 
 #row-3 {
@@ -205,4 +194,68 @@ p {
     gap: 2em;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+    .search-header > .add-button {
+        width: 50%;
+        margin: 0 0.5em;
+    }
+
+    .search-header > .search-bar {
+        width: 50%;
+        margin: 0 0.5em;
+    }
+
+    .forms {
+        width: 80%;
+    }
+
+    .event-information {
+        width: 80%;
+    }
+
+    #row-4 > .add-button {
+        width: 30vw;
+    }
+
+    #add-comment, #add-friend {
+        width: 30vw;
+    }
+
+    .comments {
+        width: 80%;
+    }
+
+    .comment-info {
+        width: 30%;
+        padding: 0.1em;
+    }
+
+    .comment-info > p {
+        text-align: center;
+    }
+
+    .events > div {
+        height: 50vh;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        width: 80%;
+        padding: 0.1em;
+    }
+    .organizer {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid black;
+    }
+
+    .name {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid black;
+    }
+    .name > p {
+        text-align: center;
+    }
 }
